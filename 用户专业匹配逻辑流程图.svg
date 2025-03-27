@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900" height="1700" xmlns="http://www.w3.org/2000/svg">
+    <!-- 样式定义 -->
+    <defs>
+        <style type="text/css">
+            .background { fill: white; }
+            .title { font-family: "Microsoft YaHei", sans-serif; font-size: 24px; font-weight: bold; fill: #333; }
+            .phase { font-family: "Microsoft YaHei", sans-serif; font-size: 16px; font-weight: bold; fill: white; }
+            .process { fill: #e6f3ff; stroke: #4682b4; stroke-width: 2; }
+            .decision { fill: #fffacd; stroke: #daa520; stroke-width: 2; }
+            .data { fill: #e6ffe6; stroke: #3cb371; stroke-width: 2; }
+            .start-end { fill: #ffe6e6; stroke: #cd5c5c; stroke-width: 2; }
+            .text { font-family: "Microsoft YaHei", sans-serif; font-size: 14px; fill: #333; }
+            .small-text { font-family: "Microsoft YaHei", sans-serif; font-size: 12px; fill: #555; }
+            .arrow { stroke: #666; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+            .dashed-arrow { stroke: #666; stroke-width: 2; fill: none; marker-end: url(#arrowhead); stroke-dasharray: 5,5; }
+            .yes-text { font-family: "Microsoft YaHei", sans-serif; font-size: 12px; fill: #008800; font-weight: bold; }
+            .no-text { font-family: "Microsoft YaHei", sans-serif; font-size: 12px; fill: #cc0000; font-weight: bold; }
+            .phase-block-1 { fill: #e6f0ff; opacity: 0.5; }
+            .phase-block-2 { fill: #ffe6e6; opacity: 0.5; }
+            .phase-block-3 { fill: #e6ffe6; opacity: 0.5; }
+            .phase-block-4 { fill: #fff6e6; opacity: 0.5; }
+            .phase-title { fill: #4682b4; }
+        </style>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#666" />
+        </marker>
+    </defs>
+    
+    <!-- 背景 -->
+    <rect width="900" height="1700" class="background" />
+    
+    <!-- 阶段色块 -->
+    <rect x="20" y="60" width="860" height="280" rx="10" ry="10" class="phase-block-1" />
+    <rect x="20" y="350" width="860" height="330" rx="10" ry="10" class="phase-block-2" />
+    <rect x="20" y="690" width="860" height="680" rx="10" ry="10" class="phase-block-3" />
+    <rect x="20" y="1380" width="860" height="280" rx="10" ry="10" class="phase-block-4" />
+    
+    <!-- 标题 -->
+    <text x="450" y="40" text-anchor="middle" class="title">用户专业匹配逻辑流程图</text>
+    
+    <!-- 阶段一：用户输入与初始化 -->
+    <rect x="40" y="70" width="250" height="30" rx="5" ry="5" class="phase-title" />
+    <text x="165" y="90" text-anchor="middle" class="phase">阶段一：用户输入与初始化</text>
+    
+    <!-- 流程图开始 -->
+    <ellipse cx="450" cy="130" rx="80" ry="30" class="start-end" />
+    <text x="450" y="135" text-anchor="middle" class="text">开始</text>
+    
+    <!-- 用户信息采集 -->
+    <rect x="350" y="180" width="200" height="60" rx="10" ry="10" class="process" />
+    <text x="450" y="215" text-anchor="middle" class="text">用户信息采集</text>
+    
+    <!-- 用户信息详情 -->
+    <rect x="600" y="180" width="200" height="140" rx="5" ry="5" class="data" />
+    <text x="700" y="200" text-anchor="middle" class="small-text">用户背景信息</text>
+    <text x="700" y="220" text-anchor="middle" class="small-text">• 学术背景/专业</text>
+    <text x="700" y="240" text-anchor="middle" class="small-text">• GPA/均分</text>
+    <text x="700" y="260" text-anchor="middle" class="small-text">• 语言成绩(雅思/托福等)</text>
+    <text x="700" y="280" text-anchor="middle" class="small-text">• 工作经验年限</text>
+    <text x="700" y="300" text-anchor="middle" class="small-text">• 作品集(如有)</text>
+    
+    <!-- 筛选目标国家和学位 -->
+    <rect x="350" y="270" width="200" height="60" rx="10" ry="10" class="process" />
+    <text x="450" y="305" text-anchor="middle" class="text">筛选目标国家和学位</text>
+    
+    <!-- 国家和学位筛选详情 -->
+    <rect x="100" y="250" width="200" height="100" rx="5" ry="5" class="data" />
+    <text x="200" y="270" text-anchor="middle" class="small-text">筛选条件</text>
+    <text x="200" y="290" text-anchor="middle" class="small-text">• 目标国家(澳洲/英国/新西兰)</text>
+    <text x="200" y="310" text-anchor="middle" class="small-text">• 学位级别(本科/硕士/博士)</text>
+    <text x="200" y="330" text-anchor="middle" class="small-text">• 专业方向(可选)</text>
+    
+    <!-- 阶段二：专业初筛与背景匹配 -->
+    <rect x="40" y="360" width="250" height="30" rx="5" ry="5" class="phase-title" />
+    <text x="165" y="380" text-anchor="middle" class="phase">阶段二：专业初筛与背景匹配</text>
+    
+    <!-- 初步筛选专业 -->
+    <rect x="350" y="410" width="200" height="60" rx="10" ry="10" class="process" />
+    <text x="450" y="445" text-anchor="middle" class="text">初步筛选专业</text>
+    
+    <!-- 初步筛选详情 -->
+    <rect x="600" y="410" width="200" height="100" rx="5" ry="5" class="data" />
+    <text x="700" y="430" text-anchor="middle" class="small-text">初步筛选条件</text>
+    <text x="700" y="450" text-anchor="middle" class="small-text">• 学位级别匹配</text>
+    <text x="700" y="470" text-anchor="middle" class="small-text">• 国家匹配</text>
+    <text x="700" y="490" text-anchor="middle" class="small-text">• 专业方向初步匹配</text>
+    
+    <!-- 学术背景匹配度计算 -->
+    <rect x="350" y="500" width="200" height="60" rx="10" ry="10" class="process" />
+    <text x="450" y="535" text-anchor="middle" class="text">学术背景匹配度计算</text>
+    
+    <!-- 学术背景匹配详情 -->
+    <rect x="100" y="500" width="200" height="120" rx="5" ry="5" class="data" />
+    <text x="200" y="520" text-anchor="middle" class="small-text">匹配规则</text>
+    <text x="200" y="540" text-anchor="middle" class="small-text">• suitable_backgrounds</text>
+    <text x="200" y="560" text-anchor="middle" class="small-text">• preferred_backgrounds</text>
+    <text x="200" y="580" text-anchor="middle" class="small-text">• min_background_match_rate</text>
+    <text x="200" y="600" text-anchor="middle" class="small-text">• alternative_requirements</text>
+    
+    <!-- 学术背景匹配判断 -->
+    <polygon points="450,590 500,640 450,690 400,640" class="decision" />
+    <text x="450" y="645" text-anchor="middle" class="text">背景匹配率≥要求?</text>
+    
+    <!-- 阶段三：录取要求匹配 -->
+    <rect x="40" y="700" width="250" height="30" rx="5" ry="5" class="phase-title" />
+    <text x="165" y="720" text-anchor="middle" class="phase">阶段三：录取要求匹配</text>
+    
+    <!-- GPA/均分要求检查 -->
+    <rect x="350" y="750" width="200" height="60" rx="10" ry="10" class="process" />
+    <text x="450" y="785" text-anchor="middle" class="text">GPA/均分要求检查</text>
+    
+    <!-- GPA检查详情 -->
+    <rect x="600" y="750" width="200" height="80" rx="5" ry="5" class="data" />
+    <text x="700" y="770" text-anchor="middle" class="small-text">GPA要求</text>
+    <text x="700" y="790" text-anchor="middle" class="small-text">• min_gpa (4分制)</text>
+    <text x="700" y="810" text-anchor="middle" class="small-text">• min_gpa_cn (百分制)</text>
+    
+    <!-- GPA匹配判断 -->
+    <polygon points="450,840 500,890 450,940 400,890" class="decision" />
+    <text x="450" y="895" text-anchor="middle" class="text">GPA≥最低要求?</text>
+    
+    <!-- 语言成绩要求检查 -->
+    <rect x="350" y="970" width="200" height="60" rx="10" ry="10" class="process" />
+    <text x="450" y="1005" text-anchor="middle" class="text">语言成绩要求检查</text>
+    
+    <!-- 语言要求详情 -->
+    <rect x="600" y="970" width="200" height="140" rx="5" ry="5" class="data" />
+    <text x="700" y="990" text-anchor="middle" class="small-text">语言要求</text>
+    <text x="700" y="1010" text-anchor="middle" class="small-text">• ielts_overall/各单项</text>
+    <text x="700" y="1030" text-anchor="middle" class="small-text">• toefl_overall/各单项</text>
+    <text x="700" y="1050" text-anchor="middle" class="small-text">• pte_overall</text>
+    <text x="700" y="1070" text-anchor="middle" class="small-text">• duolingo_overall</text>
+    <text x="700" y="1090" text-anchor="middle" class="small-text">• waiver_conditions</text>
+    
+    <!-- 语言成绩匹配判断 -->
+    <polygon points="450,1060 500,1110 450,1160 400,1110" class="decision" />
+    <text x="450" y="1115" text-anchor="middle" class="text">语言成绩≥要求?</text>
+    
+    <!-- 特殊要求检查 -->
+    <rect x="350" y="1190" width="200" height="60" rx="10" ry="10" class="process" />
+    <text x="450" y="1225" text-anchor="middle" class="text">特殊要求检查</text>
+    
+    <!-- 特殊要求详情 -->
+    <rect x="100" y="1190" width="200" height="120" rx="5" ry="5" class="data" />
+    <text x="200" y="1210" text-anchor="middle" class="small-text">特殊要求</text>
+    <text x="200" y="1230" text-anchor="middle" class="small-text">• work_experience_required</text>
+    <text x="200" y="1250" text-anchor="middle" class="small-text">• work_experience_years</text>
+    <text x="200" y="1270" text-anchor="middle" class="small-text">• portfolio_required</text>
+    <text x="200" y="1290" text-anchor="middle" class="small-text">• 国家特有要求</text>
+    
+    <!-- 特殊要求匹配判断 -->
+    <polygon points="450,1280 500,1330 450,1380 400,1330" class="decision" />
+    <text x="450" y="1335" text-anchor="middle" class="text">特殊要求匹配?</text>
+    
+    <!-- 阶段四：结果计算与输出 -->
+    <rect x="40" y="1390" width="250" height="30" rx="5" ry="5" class="phase-title" />
+    <text x="165" y="1410" text-anchor="middle" class="phase">阶段四：结果计算与输出</text>
+    
+    <!-- 计算综合匹配度 -->
+    <rect x="350" y="1440" width="200" height="60" rx="10" ry="10" class="process" />
+    <text x="450" y="1475" text-anchor="middle" class="text">计算综合匹配度</text>
+    
+    <!-- 结果输出 -->
+    <ellipse cx="450" cy="1580" rx="120" ry="40" class="start-end" />
+    <text x="450" y="1575" text-anchor="middle" class="text">输出匹配专业列表</text>
+    <text x="450" y="1595" text-anchor="middle" class="small-text">(按匹配度排序)</text>
+    
+    <!-- 连接线 -->
+    <!-- 阶段一连接线 -->
+    <path d="M 450 160 L 450 180" class="arrow" />
+    <path d="M 550 210 L 600 210" class="arrow" />
+    <path d="M 450 240 L 450 270" class="arrow" />
+    <path d="M 350 300 L 300 300" class="arrow" />
+    
+    <!-- 阶段二连接线 -->
+    <path d="M 450 330 L 450 410" class="arrow" />
+    <path d="M 550 440 L 600 440" class="arrow" />
+    <path d="M 450 470 L 450 500" class="arrow" />
+    <path d="M 350 530 L 300 530" class="arrow" />
+    <path d="M 450 560 L 450 590" class="arrow" />
+    
+    <!-- 决策路径连接线 -->
+    <path d="M 450 690 L 450 750" class="arrow" />
+    
+    <!-- 是/否路径标记 -->
+    <text x="455" y="710" class="yes-text">是</text>
+    
+    <text x="340" y="630" class="no-text">否</text>
+    <path d="M 400 640 L 300 640 L 300 1475 L 350 1475" class="dashed-arrow" />
+    
+    <!-- 阶段三连接线 -->
+    <path d="M 550 780 L 600 780" class="arrow" />
+    <path d="M 450 810 L 450 840" class="arrow" />
+    
+    <!-- GPA决策路径 -->
+    <text x="455" y="948" class="yes-text">是</text>
+    
+    <text x="340" y="880" class="no-text">否</text>
+    <path d="M 400 890 L 250 890 L 250 1475 L 350 1475" class="dashed-arrow" />
+    
+    <path d="M 450 940 L 450 970" class="arrow" />
+    
+    <!-- 语言成绩连接线 -->
+    <path d="M 550 1000 L 600 1000" class="arrow" />
+    <path d="M 450 1030 L 450 1060" class="arrow" />
+    
+    <!-- 语言成绩决策路径 -->
+    <text x="455" y="1170" class="yes-text">是</text>
+    
+    <text x="340" y="1100" class="no-text">否</text>
+    <path d="M 400 1110 L 200 1110 L 200 1475 L 350 1475" class="dashed-arrow" />
+    
+    <path d="M 450 1160 L 450 1190" class="arrow" />
+    
+    <!-- 特殊要求连接线 -->
+    <path d="M 350 1220 L 300 1220" class="arrow" />
+    <path d="M 450 1250 L 450 1280" class="arrow" />
+    
+    <!-- 特殊要求决策路径 -->
+    <text x="455" y="1410" class="yes-text">是</text>
+    
+    <text x="340" y="1320" class="no-text">否</text>
+    <path d="M 400 1330 L 150 1330 L 150 1475 L 350 1475" class="dashed-arrow" />
+    
+    <path d="M 450 1380 L 450 1440" class="arrow" />
+    
+    <!-- 阶段四连接线 -->
+    <path d="M 450 1500 L 450 1540" class="arrow" />
+</svg>

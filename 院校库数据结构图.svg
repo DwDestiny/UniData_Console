@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="800" xmlns="http://www.w3.org/2000/svg">
+    <!-- 背景 -->
+    <rect width="1000" height="800" fill="#f8f9fa"/>
+    
+    <!-- 标题 -->
+    <text x="500" y="40" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="#333">院校库产品数据结构图</text>
+    
+    <!-- 院校基本信息模块 -->
+    <rect x="100" y="100" width="200" height="120" rx="5" ry="5" fill="#4472c4" stroke="#2f528f" stroke-width="2"/>
+    <text x="200" y="130" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="white">院校基本信息</text>
+    <text x="200" y="155" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">university_id (PK)</text>
+    <text x="200" y="175" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">university_name_cn</text>
+    <text x="200" y="195" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">university_name_en</text>
+    <text x="200" y="215" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">...</text>
+    
+    <!-- 专业信息模块 -->
+    <rect x="400" y="100" width="200" height="120" rx="5" ry="5" fill="#ed7d31" stroke="#b45a1e" stroke-width="2"/>
+    <text x="500" y="130" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="white">专业信息</text>
+    <text x="500" y="155" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">program_id (PK)</text>
+    <text x="500" y="175" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">university_id (FK)</text>
+    <text x="500" y="195" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">program_name_cn</text>
+    <text x="500" y="215" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">...</text>
+    
+    <!-- 基本录取要求模块 -->
+    <rect x="700" y="100" width="200" height="120" rx="5" ry="5" fill="#a5a5a5" stroke="#7f7f7f" stroke-width="2"/>
+    <text x="800" y="130" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="white">基本录取要求</text>
+    <text x="800" y="155" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">requirement_id (PK)</text>
+    <text x="800" y="175" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">program_id (FK)</text>
+    <text x="800" y="195" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">academic_background</text>
+    <text x="800" y="215" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">...</text>
+    
+    <!-- 语言要求模块 -->
+    <rect x="100" y="300" width="200" height="120" rx="5" ry="5" fill="#70ad47" stroke="#507e32" stroke-width="2"/>
+    <text x="200" y="330" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="white">语言要求</text>
+    <text x="200" y="355" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">language_id (PK)</text>
+    <text x="200" y="375" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">program_id (FK)</text>
+    <text x="200" y="395" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">ielts_overall</text>
+    <text x="200" y="415" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">...</text>
+    
+    <!-- 国家特有要求模块 -->
+    <rect x="400" y="300" width="200" height="120" rx="5" ry="5" fill="#5b9bd5" stroke="#41719c" stroke-width="2"/>
+    <text x="500" y="330" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="white">国家特有要求</text>
+    <text x="500" y="355" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">[country]_requirement_id (PK)</text>
+    <text x="500" y="375" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">program_id (FK)</text>
+    <text x="500" y="395" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">国家特有字段</text>
+    <text x="500" y="415" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">...</text>
+    
+    <!-- 申请流程与时间线模块 -->
+    <rect x="700" y="300" width="200" height="120" rx="5" ry="5" fill="#ffc000" stroke="#bf9000" stroke-width="2"/>
+    <text x="800" y="330" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="white">申请流程与时间线</text>
+    <text x="800" y="355" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">timeline_id (PK)</text>
+    <text x="800" y="375" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">program_id (FK)</text>
+    <text x="800" y="395" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">application_open_date</text>
+    <text x="800" y="415" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">...</text>
+    
+    <!-- 用户背景匹配模块 -->
+    <rect x="400" y="500" width="200" height="120" rx="5" ry="5" fill="#c55a11" stroke="#933c0c" stroke-width="2"/>
+    <text x="500" y="530" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="white">用户背景匹配</text>
+    <text x="500" y="555" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">match_id (PK)</text>
+    <text x="500" y="575" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">program_id (FK)</text>
+    <text x="500" y="595" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">suitable_backgrounds</text>
+    <text x="500" y="615" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">...</text>
+    
+    <!-- 关系连线 -->
+    <!-- 院校 -> 专业 -->
+    <line x1="300" y1="160" x2="400" y2="160" stroke="#333" stroke-width="2"/>
+    <polygon points="395,155 400,160 395,165" fill="#333"/>
+    
+    <!-- 专业 -> 基本录取要求 -->
+    <line x1="600" y1="160" x2="700" y2="160" stroke="#333" stroke-width="2"/>
+    <polygon points="695,155 700,160 695,165" fill="#333"/>
+    
+    <!-- 专业 -> 语言要求 -->
+    <line x1="500" y1="220" x2="500" y2="260" stroke="#333" stroke-width="2"/>
+    <line x1="500" y1="260" x2="200" y2="260" stroke="#333" stroke-width="2"/>
+    <line x1="200" y1="260" x2="200" y2="300" stroke="#333" stroke-width="2"/>
+    <polygon points="195,295 200,300 205,295" fill="#333"/>
+    
+    <!-- 专业 -> 国家特有要求 -->
+    <line x1="500" y1="220" x2="500" y2="300" stroke="#333" stroke-width="2"/>
+    <polygon points="495,295 500,300 505,295" fill="#333"/>
+    
+    <!-- 专业 -> 申请流程与时间线 -->
+    <line x1="500" y1="220" x2="500" y2="260" stroke="#333" stroke-width="2"/>
+    <line x1="500" y1="260" x2="800" y2="260" stroke="#333" stroke-width="2"/>
+    <line x1="800" y1="260" x2="800" y2="300" stroke="#333" stroke-width="2"/>
+    <polygon points="795,295 800,300 805,295" fill="#333"/>
+    
+    <!-- 专业 -> 用户背景匹配 -->
+    <line x1="500" y1="220" x2="500" y2="500" stroke="#333" stroke-width="2"/>
+    <polygon points="495,495 500,500 505,495" fill="#333"/>
+    
+    <!-- 图例 -->
+    <rect x="100" y="700" width="20" height="20" fill="#4472c4" stroke="#2f528f" stroke-width="1"/>
+    <text x="130" y="715" font-family="Arial, sans-serif" font-size="14" fill="#333">基础信息</text>
+    
+    <rect x="250" y="700" width="20" height="20" fill="#ed7d31" stroke="#b45a1e" stroke-width="1"/>
+    <text x="280" y="715" font-family="Arial, sans-serif" font-size="14" fill="#333">专业信息</text>
+    
+    <rect x="400" y="700" width="20" height="20" fill="#a5a5a5" stroke="#7f7f7f" stroke-width="1"/>
+    <text x="430" y="715" font-family="Arial, sans-serif" font-size="14" fill="#333">录取要求</text>
+    
+    <rect x="550" y="700" width="20" height="20" fill="#ffc000" stroke="#bf9000" stroke-width="1"/>
+    <text x="580" y="715" font-family="Arial, sans-serif" font-size="14" fill="#333">申请流程</text>
+    
+    <rect x="700" y="700" width="20" height="20" fill="#c55a11" stroke="#933c0c" stroke-width="1"/>
+    <text x="730" y="715" font-family="Arial, sans-serif" font-size="14" fill="#333">匹配规则</text>
+    
+    <text x="100" y="750" font-family="Arial, sans-serif" font-size="12" fill="#666">注：PK - 主键，FK - 外键，实线箭头表示一对多关系</text>
+</svg>

@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>留学平台管理系统</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#3B82F6',
+secondary: '#1E40AF'
+},
+borderRadius: {
+'none': '0px',
+'sm': '2px',
+DEFAULT: '4px',
+'md': '8px',
+'lg': '12px',
+'xl': '16px',
+'2xl': '20px',
+'3xl': '24px',
+'full': '9999px',
+'button': '4px'
+}
+}
+}
+}
+</script>
+<style>
+body {
+min-height: 1024px;
+min-width: 1440px;
+}
+.fa-bars, .fa-bell, .fa-user-circle {
+display: flex;
+justify-content: center;
+align-items: center;
+width: 24px;
+height: 24px;
+}
+.group:hover span {
+display: block;
+}
+main {
+min-width: 0;
+}
+table {
+min-width: 100%;
+}
+</style>
+</head>
+<body>
+<div class="flex h-screen bg-gray-100 min-w-[1440px]">
+<div class="min-w-[280px] bg-white shadow-lg">
+<div class="p-4 border-b">
+<h1 class="text-xl font-semibold">留学平台管理系统</h1>
+</div>
+<nav class="mt-4">
+<div class="flex flex-col space-y-1">
+<a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50">
+<i class="fas fa-home mr-3"></i>
+首页
+</a>
+<div>
+<a href="#" class="flex items-center px-4 py-3 bg-blue-50 text-blue-600">
+<i class="fas fa-university mr-3"></i>
+新版院校系统
+</a>
+<a href="#" class="flex items-center px-4 py-2 pl-11 text-primary bg-blue-50 hover:bg-gray-50 text-sm">
+新版院校管理
+</a>
+<a href="#" class="flex items-center px-4 py-2 pl-11 text-gray-600 hover:bg-gray-50 text-sm">
+新版院系管理
+</a>
+<a href="#" class="flex items-center px-4 py-2 pl-11 text-gray-600 hover:bg-gray-50 text-sm">
+新版校区管理
+</a>
+<a href="#" class="flex items-center px-4 py-2 pl-11 text-gray-600 hover:bg-gray-50 text-sm">
+中国院校管理
+</a>
+</div>
+</div>
+</nav>
+</div>
+<div class="flex-1 flex flex-col">
+<header class="h-16 bg-white shadow-sm flex items-center justify-between px-6">
+<div class="flex items-center">
+<i class="fas fa-bars text-gray-400 text-xl mr-4"></i>
+<span class="text-gray-600">院校库数据管理</span>
+</div>
+<div class="flex items-center">
+<i class="fas fa-bell text-gray-400 text-xl mr-4"></i>
+<div class="flex items-center">
+<i class="fas fa-user-circle text-gray-400 text-xl mr-2"></i>
+<span class="text-gray-600">管理员</span>
+</div>
+</div>
+</header>
+<main class="flex-1 p-8 overflow-auto min-w-0">
+<div class="bg-white rounded-lg shadow p-8">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-lg font-medium">认可名单管理</h2>
+<div class="relative">
+<button onclick="document.getElementById('fileUploadModal').classList.remove('hidden')" class="bg-primary text-white px-4 py-2 flex items-center !rounded-button whitespace-nowrap hover:bg-blue-700 transition-colors">
+<i class="fas fa-file-import mr-2"></i>
+导入名单
+</button>
+<div id="fileUploadModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 flex items-center justify-center">
+<div class="relative mx-auto p-5 border w-[480px] shadow-lg rounded-lg bg-white">
+<div class="flex justify-between items-center border-b pb-4">
+<h3 class="text-lg font-medium">新增认可名单</h3>
+<button onclick="document.getElementById('fileUploadModal').classList.add('hidden')" class="text-gray-400 hover:text-gray-500">
+<i class="fas fa-times"></i>
+</button>
+</div>
+<div class="mt-6">
+<div class="mb-4 flex items-center">
+<input type="checkbox" id="useExistingList" class="mr-2">
+<label for="useExistingList">导入已有名单</label>
+</div>
+<div id="listNameInput" class="mb-4">
+<label class="block text-sm font-medium text-gray-700 mb-1">名单名称</label>
+<input type="text" class="w-full border border-gray-300 px-3 py-2 !rounded-button" placeholder="请输入名单名称">
+</div>
+<div id="listNameSelect" class="mb-4 hidden">
+<label class="block text-sm font-medium text-gray-700 mb-1">选择名单</label>
+<div id="warningMessage" class="hidden mb-2 text-sm text-amber-600">
+<i class="fas fa-exclamation-triangle mr-1"></i>
+请保障导入数据表头与所选名单一致，导入后，所选名单将被新导入的数据覆盖，原有名单数据失效！
+</div>
+<div class="relative">
+<button class="w-full flex items-center justify-between border border-gray-300 px-3 py-2 bg-white !rounded-button" onclick="document.getElementById('dropdownList').classList.toggle('hidden')">
+<span>请选择名单</span>
+<i class="fas fa-chevron-down"></i>
+</button>
+<div id="dropdownList" class="hidden absolute w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
+<div class="py-1">
+<button class="w-full px-3 py-2 text-left hover:bg-gray-100">2024年QS世界大学排名TOP100</button>
+<button class="w-full px-3 py-2 text-left hover:bg-gray-100">2024年泰晤士高等教育世界大学排名TOP50</button>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-center w-full">
+<label class="flex flex-col items-center justify-center w-full h-48 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+<div class="flex flex-col items-center justify-center pt-5 pb-6">
+<i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-3"></i>
+<p class="mb-2 text-sm text-gray-500">点击或拖拽文件到这里上传</p>
+<p class="text-xs text-gray-500">支持的文件格式：.xlsx, .xls</p>
+</div>
+<input type="file" class="hidden" accept=".xlsx,.xls" />
+</label>
+</div>
+<script>
+document.getElementById('useExistingList').addEventListener('change', function() {
+const listNameInput = document.getElementById('listNameInput');
+const listNameSelect = document.getElementById('listNameSelect');
+const warningMessage = document.getElementById('warningMessage');
+if (this.checked) {
+listNameInput.classList.add('hidden');
+listNameSelect.classList.remove('hidden');
+warningMessage.classList.remove('hidden');
+} else {
+listNameInput.classList.remove('hidden');
+listNameSelect.classList.add('hidden');
+warningMessage.classList.add('hidden');
+}
+});
+</script>
+<div class="mt-4 flex items-center text-sm text-gray-600">
+<i class="fas fa-download mr-2 text-primary"></i>
+<a href="#" class="text-primary hover:text-secondary" id="templateLink">下载Excel模板</a>
+</div>
+<script>
+document.getElementById('useExistingList').addEventListener('change', function() {
+  const templateLink = document.getElementById('templateLink');
+  if (this.checked) {
+    templateLink.textContent = '导出所选名单';
+  } else {
+    templateLink.textContent = '下载Excel模板';
+  }
+});
+</script>
+</div>
+<div class="mt-6 flex justify-end gap-3 pt-4 border-t">
+<button onclick="document.getElementById('fileUploadModal').classList.add('hidden')" class="px-4 py-2 bg-gray-100 text-gray-700 !rounded-button hover:bg-gray-200 transition-colors whitespace-nowrap">取消</button>
+<button class="px-4 py-2 bg-primary text-white !rounded-button hover:bg-blue-700 transition-colors whitespace-nowrap">确定上传</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full border-collapse">
+<thead>
+<tr class="bg-gray-50">
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">序号</th>
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">名单名称</th>
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">名单院校数量</th>
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">绑定专业数量</th>
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">备注</th>
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">更新人</th>
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">更新时间</th>
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr class="hover:bg-gray-50">
+<td class="border px-4 py-2 text-center">1</td>
+<td class="border px-4 py-2">2024年QS世界大学排名TOP100</td>
+<td class="border px-4 py-2 text-center">100</td>
+<td class="border px-4 py-2 text-center">325</td>
+<td class="border px-4 py-2">基于2024年QS世界大学最新排名</td>
+<td class="border px-4 py-2">张晓雯</td>
+<td class="border px-4 py-2">2024-01-15 14:30</td>
+<td class="border px-4 py-2">
+<div class="flex items-center justify-center space-x-2">
+<button class="text-green-600 hover:text-green-800 !rounded-button relative group">
+<i class="fas fa-download"></i>
+<span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity">导出</span>
+</button>
+<button onclick="document.getElementById('editModal').classList.remove('hidden')" class="text-blue-600 hover:text-blue-800 !rounded-button relative group">
+<i class="fas fa-edit"></i>
+<span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity">编辑</span>
+</button>
+<div id="editModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 flex items-center justify-center">
+<div class="relative mx-auto p-5 border w-[800px] shadow-lg rounded-lg bg-white">
+<div class="flex justify-between items-center border-b pb-4">
+<h3 class="text-lg font-medium">认可名单编辑</h3>
+<button onclick="document.getElementById('editModal').classList.add('hidden')" class="text-gray-400 hover:text-gray-500">
+<i class="fas fa-times"></i>
+</button>
+</div>
+<div class="mt-4">
+<h4 class="text-base font-medium mb-4">2024年QS世界大学排名TOP100</h4>
+<div class="overflow-x-auto">
+<table class="w-full border-collapse">
+<thead>
+<tr class="bg-gray-50">
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">序号</th>
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">院校名称</th>
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">2:1分数</th>
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">2:2分数</th>
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr class="hover:bg-gray-50">
+<td class="border px-4 py-2 text-center">1</td>
+<td class="border px-4 py-2">牛津大学</td>
+<td class="border px-4 py-2 text-center">85</td>
+<td class="border px-4 py-2 text-center">75</td>
+<td class="border px-4 py-2">
+<div class="flex items-center justify-center space-x-2">
+<button class="text-blue-600 hover:text-blue-800 !rounded-button" onclick="
+const row = this.closest('tr');
+const cells = row.querySelectorAll('td');
+const originalValues = {
+name: cells[1].textContent,
+score1: cells[2].textContent,
+score2: cells[3].textContent
+};
+cells[1].innerHTML = `<input type='text' value='${originalValues.name}' class='w-full border px-2 py-1 text-sm !rounded-button'>`;
+cells[2].innerHTML = `<input type='number' value='${originalValues.score1}' class='w-full border px-2 py-1 text-sm !rounded-button'>`;
+cells[3].innerHTML = `<input type='number' value='${originalValues.score2}' class='w-full border px-2 py-1 text-sm !rounded-button'>`;
+const saveBtn = document.createElement('button');
+saveBtn.className = 'text-green-600 hover:text-green-800 !rounded-button mr-2';
+saveBtn.innerHTML = '<i class=\'fas fa-check\'></i>';
+saveBtn.onclick = () => {
+cells[1].textContent = cells[1].querySelector('input').value;
+cells[2].textContent = cells[2].querySelector('input').value;
+cells[3].textContent = cells[3].querySelector('input').value;
+restoreButtons();
+};
+const cancelBtn = document.createElement('button');
+cancelBtn.className = 'text-red-600 hover:text-red-800 !rounded-button';
+cancelBtn.innerHTML = '<i class=\'fas fa-times\'></i>';
+cancelBtn.onclick = () => {
+cells[1].textContent = originalValues.name;
+cells[2].textContent = originalValues.score1;
+cells[3].textContent = originalValues.score2;
+restoreButtons();
+};
+const buttonsCell = cells[4];
+const originalButtons = buttonsCell.innerHTML;
+function restoreButtons() {
+buttonsCell.innerHTML = originalButtons;
+}
+buttonsCell.innerHTML = '';
+const buttonWrapper = document.createElement('div');
+buttonWrapper.className = 'flex items-center justify-center space-x-2';
+buttonWrapper.appendChild(saveBtn);
+buttonWrapper.appendChild(cancelBtn);
+buttonsCell.appendChild(buttonWrapper);
+">
+<i class="fas fa-edit"></i>
+</button>
+<button class="text-red-600 hover:text-red-800 !rounded-button">
+<i class="fas fa-trash"></i>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50">
+<td class="border px-4 py-2 text-center">2</td>
+<td class="border px-4 py-2">剑桥大学</td>
+<td class="border px-4 py-2 text-center">85</td>
+<td class="border px-4 py-2 text-center">75</td>
+<td class="border px-4 py-2">
+<div class="flex items-center justify-center space-x-2">
+<button class="text-blue-600 hover:text-blue-800 !rounded-button" onclick="
+const row = this.closest('tr');
+const cells = row.querySelectorAll('td');
+const originalValues = {
+name: cells[1].textContent,
+score1: cells[2].textContent,
+score2: cells[3].textContent
+};
+cells[1].innerHTML = `<input type='text' value='${originalValues.name}' class='w-full border px-2 py-1 text-sm !rounded-button'>`;
+cells[2].innerHTML = `<input type='number' value='${originalValues.score1}' class='w-full border px-2 py-1 text-sm !rounded-button'>`;
+cells[3].innerHTML = `<input type='number' value='${originalValues.score2}' class='w-full border px-2 py-1 text-sm !rounded-button'>`;
+const saveBtn = document.createElement('button');
+saveBtn.className = 'text-green-600 hover:text-green-800 !rounded-button mr-2';
+saveBtn.innerHTML = '<i class=\'fas fa-check\'></i>';
+saveBtn.onclick = () => {
+cells[1].textContent = cells[1].querySelector('input').value;
+cells[2].textContent = cells[2].querySelector('input').value;
+cells[3].textContent = cells[3].querySelector('input').value;
+restoreButtons();
+};
+const cancelBtn = document.createElement('button');
+cancelBtn.className = 'text-red-600 hover:text-red-800 !rounded-button';
+cancelBtn.innerHTML = '<i class=\'fas fa-times\'></i>';
+cancelBtn.onclick = () => {
+cells[1].textContent = originalValues.name;
+cells[2].textContent = originalValues.score1;
+cells[3].textContent = originalValues.score2;
+restoreButtons();
+};
+const buttonsCell = cells[4];
+const originalButtons = buttonsCell.innerHTML;
+function restoreButtons() {
+buttonsCell.innerHTML = originalButtons;
+}
+buttonsCell.innerHTML = '';
+const buttonWrapper = document.createElement('div');
+buttonWrapper.className = 'flex items-center justify-center space-x-2';
+buttonWrapper.appendChild(saveBtn);
+buttonWrapper.appendChild(cancelBtn);
+buttonsCell.appendChild(buttonWrapper);
+">
+<i class="fas fa-edit"></i>
+</button>
+<button class="text-red-600 hover:text-red-800 !rounded-button">
+<i class="fas fa-trash"></i>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="mt-6 flex justify-end gap-3 pt-4 border-t">
+<button onclick="document.getElementById('editModal').classList.add('hidden')" class="px-4 py-2 bg-gray-100 text-gray-700 !rounded-button hover:bg-gray-200 transition-colors whitespace-nowrap">取消</button>
+<button class="px-4 py-2 bg-primary text-white !rounded-button hover:bg-blue-700 transition-colors whitespace-nowrap">保存</button>
+</div>
+</div>
+</div>
+<button class="text-red-600 hover:text-red-800 !rounded-button relative group">
+<i class="fas fa-trash"></i>
+<span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity">删除</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50">
+<td class="border px-4 py-2 text-center">2</td>
+<td class="border px-4 py-2">2024年泰晤士高等教育世界大学排名TOP50</td>
+<td class="border px-4 py-2 text-center">50</td>
+<td class="border px-4 py-2 text-center">156</td>
+<td class="border px-4 py-2">基于最新THE世界大学排名</td>
+<td class="border px-4 py-2">刘德华</td>
+<td class="border px-4 py-2">2024-01-10 09:15</td>
+<td class="border px-4 py-2">
+<div class="flex items-center justify-center space-x-2">
+<button class="text-green-600 hover:text-green-800 !rounded-button relative group">
+<i class="fas fa-download"></i>
+<span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity">导出</span>
+</button>
+<button onclick="document.getElementById('editModal').classList.remove('hidden')" class="text-blue-600 hover:text-blue-800 !rounded-button relative group">
+<i class="fas fa-edit"></i>
+<span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity">编辑</span>
+</button>
+<div id="editModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 flex items-center justify-center">
+<div class="relative mx-auto p-5 border w-[800px] shadow-lg rounded-lg bg-white">
+<div class="flex justify-between items-center border-b pb-4">
+<h3 class="text-lg font-medium">认可名单编辑</h3>
+<button onclick="document.getElementById('editModal').classList.add('hidden')" class="text-gray-400 hover:text-gray-500">
+<i class="fas fa-times"></i>
+</button>
+</div>
+<div class="mt-4">
+<h4 class="text-base font-medium mb-4">2024年QS世界大学排名TOP100</h4>
+<div class="overflow-x-auto">
+<table class="w-full border-collapse">
+<thead>
+<tr class="bg-gray-50">
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">序号</th>
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">院校名称</th>
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">2:1分数</th>
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">2:2分数</th>
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr class="hover:bg-gray-50">
+<td class="border px-4 py-2 text-center">1</td>
+<td class="border px-4 py-2">牛津大学</td>
+<td class="border px-4 py-2 text-center">85</td>
+<td class="border px-4 py-2 text-center">75</td>
+<td class="border px-4 py-2">
+<div class="flex items-center justify-center space-x-2">
+<button class="text-blue-600 hover:text-blue-800 !rounded-button" onclick="
+const row = this.closest('tr');
+const cells = row.querySelectorAll('td');
+const originalValues = {
+name: cells[1].textContent,
+score1: cells[2].textContent,
+score2: cells[3].textContent
+};
+cells[1].innerHTML = `<input type='text' value='${originalValues.name}' class='w-full border px-2 py-1 text-sm !rounded-button'>`;
+cells[2].innerHTML = `<input type='number' value='${originalValues.score1}' class='w-full border px-2 py-1 text-sm !rounded-button'>`;
+cells[3].innerHTML = `<input type='number' value='${originalValues.score2}' class='w-full border px-2 py-1 text-sm !rounded-button'>`;
+const saveBtn = document.createElement('button');
+saveBtn.className = 'text-green-600 hover:text-green-800 !rounded-button mr-2';
+saveBtn.innerHTML = '<i class=\'fas fa-check\'></i>';
+saveBtn.onclick = () => {
+cells[1].textContent = cells[1].querySelector('input').value;
+cells[2].textContent = cells[2].querySelector('input').value;
+cells[3].textContent = cells[3].querySelector('input').value;
+restoreButtons();
+};
+const cancelBtn = document.createElement('button');
+cancelBtn.className = 'text-red-600 hover:text-red-800 !rounded-button';
+cancelBtn.innerHTML = '<i class=\'fas fa-times\'></i>';
+cancelBtn.onclick = () => {
+cells[1].textContent = originalValues.name;
+cells[2].textContent = originalValues.score1;
+cells[3].textContent = originalValues.score2;
+restoreButtons();
+};
+const buttonsCell = cells[4];
+const originalButtons = buttonsCell.innerHTML;
+function restoreButtons() {
+buttonsCell.innerHTML = originalButtons;
+}
+buttonsCell.innerHTML = '';
+const buttonWrapper = document.createElement('div');
+buttonWrapper.className = 'flex items-center justify-center space-x-2';
+buttonWrapper.appendChild(saveBtn);
+buttonWrapper.appendChild(cancelBtn);
+buttonsCell.appendChild(buttonWrapper);
+">
+<i class="fas fa-edit"></i>
+</button>
+<button class="text-red-600 hover:text-red-800 !rounded-button">
+<i class="fas fa-trash"></i>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50">
+<td class="border px-4 py-2 text-center">2</td>
+<td class="border px-4 py-2">剑桥大学</td>
+<td class="border px-4 py-2 text-center">85</td>
+<td class="border px-4 py-2 text-center">75</td>
+<td class="border px-4 py-2">
+<div class="flex items-center justify-center space-x-2">
+<button class="text-blue-600 hover:text-blue-800 !rounded-button" onclick="
+const row = this.closest('tr');
+const cells = row.querySelectorAll('td');
+const originalValues = {
+name: cells[1].textContent,
+score1: cells[2].textContent,
+score2: cells[3].textContent
+};
+cells[1].innerHTML = `<input type='text' value='${originalValues.name}' class='w-full border px-2 py-1 text-sm !rounded-button'>`;
+cells[2].innerHTML = `<input type='number' value='${originalValues.score1}' class='w-full border px-2 py-1 text-sm !rounded-button'>`;
+cells[3].innerHTML = `<input type='number' value='${originalValues.score2}' class='w-full border px-2 py-1 text-sm !rounded-button'>`;
+const saveBtn = document.createElement('button');
+saveBtn.className = 'text-green-600 hover:text-green-800 !rounded-button mr-2';
+saveBtn.innerHTML = '<i class=\'fas fa-check\'></i>';
+saveBtn.onclick = () => {
+cells[1].textContent = cells[1].querySelector('input').value;
+cells[2].textContent = cells[2].querySelector('input').value;
+cells[3].textContent = cells[3].querySelector('input').value;
+restoreButtons();
+};
+const cancelBtn = document.createElement('button');
+cancelBtn.className = 'text-red-600 hover:text-red-800 !rounded-button';
+cancelBtn.innerHTML = '<i class=\'fas fa-times\'></i>';
+cancelBtn.onclick = () => {
+cells[1].textContent = originalValues.name;
+cells[2].textContent = originalValues.score1;
+cells[3].textContent = originalValues.score2;
+restoreButtons();
+};
+const buttonsCell = cells[4];
+const originalButtons = buttonsCell.innerHTML;
+function restoreButtons() {
+buttonsCell.innerHTML = originalButtons;
+}
+buttonsCell.innerHTML = '';
+const buttonWrapper = document.createElement('div');
+buttonWrapper.className = 'flex items-center justify-center space-x-2';
+buttonWrapper.appendChild(saveBtn);
+buttonWrapper.appendChild(cancelBtn);
+buttonsCell.appendChild(buttonWrapper);
+">
+<i class="fas fa-edit"></i>
+</button>
+<button class="text-red-600 hover:text-red-800 !rounded-button">
+<i class="fas fa-trash"></i>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="mt-6 flex justify-end gap-3 pt-4 border-t">
+<button onclick="document.getElementById('editModal').classList.add('hidden')" class="px-4 py-2 bg-gray-100 text-gray-700 !rounded-button hover:bg-gray-200 transition-colors whitespace-nowrap">取消</button>
+<button class="px-4 py-2 bg-primary text-white !rounded-button hover:bg-blue-700 transition-colors whitespace-nowrap">保存</button>
+</div>
+</div>
+</div>
+<button class="text-red-600 hover:text-red-800 !rounded-button relative group">
+<i class="fas fa-trash"></i>
+<span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity">删除</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body>
+</html>

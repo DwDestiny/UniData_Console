@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>留学平台管理系统</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#3B82F6',
+secondary: '#1E40AF'
+},
+borderRadius: {
+'none': '0px',
+'sm': '2px',
+DEFAULT: '4px',
+'md': '8px',
+'lg': '12px',
+'xl': '16px',
+'2xl': '20px',
+'3xl': '24px',
+'full': '9999px',
+'button': '4px'
+}
+}
+}
+}
+</script>
+<style>
+body {
+min-height: 1024px;
+overflow-x: hidden;
+}
+.overflow-x-auto {
+-webkit-overflow-scrolling: touch;
+}
+.fa-bars, .fa-bell, .fa-user-circle {
+display: flex;
+justify-content: center;
+align-items: center;
+width: 24px;
+height: 24px;
+}
+.group:hover span {
+display: block;
+}
+</style>
+</head>
+<body>
+<div class="flex h-screen bg-gray-100 w-full max-w-[1920px] mx-auto">
+<div class="w-64 lg:w-[280px] bg-white shadow-lg flex-shrink-0">
+<div class="p-4 border-b">
+<h1 class="text-xl font-semibold">留学平台管理系统</h1>
+</div>
+<nav class="mt-4">
+<div class="flex flex-col space-y-1">
+<a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50">
+<i class="fas fa-home mr-3"></i>
+首页
+</a>
+<div>
+<a href="#" class="flex items-center px-4 py-3 bg-blue-50 text-blue-600">
+<i class="fas fa-university mr-3"></i>
+新版院校系统
+</a>
+<a href="#" class="flex items-center px-4 py-2 pl-11 text-primary bg-blue-50 hover:bg-gray-50 text-sm">
+新版院校管理
+</a>
+<a href="#" class="flex items-center px-4 py-2 pl-11 text-gray-600 hover:bg-gray-50 text-sm">
+新版院系管理
+</a>
+<a href="#" class="flex items-center px-4 py-2 pl-11 text-gray-600 hover:bg-gray-50 text-sm">
+新版校区管理
+</a>
+<a href="#" class="flex items-center px-4 py-2 pl-11 text-gray-600 hover:bg-gray-50 text-sm">
+中国院校管理
+</a>
+</div>
+</div>
+</nav>
+</div>
+<div class="flex-1 flex flex-col">
+<header class="h-16 bg-white shadow-sm flex items-center justify-between px-6">
+<div class="flex items-center">
+<i class="fas fa-bars text-gray-400 text-xl mr-4"></i>
+<span class="text-gray-600">院校库数据管理</span>
+</div>
+<div class="flex items-center">
+<i class="fas fa-bell text-gray-400 text-xl mr-4"></i>
+<div class="flex items-center">
+<i class="fas fa-user-circle text-gray-400 text-xl mr-2"></i>
+<span class="text-gray-600">管理员</span>
+</div>
+</div>
+</header>
+<main class="flex-1 p-8 overflow-auto">
+<div class="bg-white rounded-lg shadow p-8">
+<h2 class="text-lg font-medium mb-6">专业基本信息</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+<div class="flex items-center">
+<label class="w-32 text-right text-gray-600">专业英文名：</label>
+<div class="flex-1 ml-4 px-3 py-2 bg-gray-50 text-gray-700">
+Bachelor of Science and Bachelor
+</div>
+</div>
+<div class="flex items-center">
+<label class="w-32 text-right text-gray-600">学位名称：</label>
+<div class="flex-1 ml-4 px-3 py-2 bg-gray-50 text-gray-700">
+Bachelor
+</div>
+</div>
+<div class="flex items-center">
+<label class="w-32 text-right text-gray-600">学位等级：</label>
+<div class="flex-1 ml-4 px-3 py-2 bg-gray-50 text-gray-700">
+本科
+</div>
+</div>
+<div class="flex items-center">
+<label class="w-32 text-right text-gray-600">所属院系：</label>
+<div class="flex-1 ml-4 px-3 py-2 bg-gray-50 text-gray-700">
+计算机科学与技术学院
+</div>
+</div>
+<div class="flex items-center">
+<label class="w-32 text-right text-gray-600">学制：</label>
+<div class="flex-1 ml-4 px-3 py-2 bg-gray-50 text-gray-700">
+4年
+</div>
+</div>
+<div class="flex items-center">
+<label class="w-32 text-right text-gray-600">专业小方向：</label>
+<div class="flex-1 ml-4 px-3 py-2 bg-gray-50 text-gray-700">
+人工智能与数据科学
+</div>
+</div>
+</div>
+<div class="mt-8">
+<h2 class="text-lg font-medium mb-4">学术要求</h2>
+<div class="bg-gray-50 p-4 rounded">
+<textarea class="w-full h-32 p-3 border-none bg-transparent resize-none outline-none text-gray-700" maxlength="300" placeholder="请输入学术要求，最多300字">本专业主要面向人工智能与数据科学领域，要求申请者具备扎实的数学基础，包括但不限于高等数学、线性代数、概率论与数理统计等核心课程的深入理解。同时需要具备良好的编程能力，熟悉Python、Java等主流编程语言，具有基础的机器学习和深度学习知识背景。申请者需提供相关课程成绩单，GMAT/GRE成绩，以及编程项目经验证明。国际学生还需提供雅思不低于6.5分或托福不低于95分的语言成绩证明。</textarea>
+<div class="text-right text-sm text-gray-500 mt-2">
+<span class="character-count">0</span>/300
+</div>
+</div>
+</div>
+<script>
+document.querySelector('textarea').addEventListener('input', function() {
+const count = this.value.length;
+document.querySelector('.character-count').textContent = count;
+});
+document.querySelector('.character-count').textContent = document.querySelector('textarea').value.length;
+</script>
+<div class="mt-8">
+<h2 class="text-lg font-medium mb-4">录取要求</h2>
+<div class="overflow-x-auto relative">
+<table class="w-full border-collapse min-w-[1200px]">
+<thead>
+<tr class="bg-gray-50">
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">序号</th>
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">学制</th>
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">小方向</th>
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">专业背景要求</th>
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">背景要求说明</th>
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">工作经验年限</th>
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">C9均分</th>
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">985均分</th>
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">211均分</th>
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">非211均分</th>
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">高考分数</th>
+<th class="border px-4 py-2 text-sm font-medium text-gray-600">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr class="hover:bg-gray-50">
+<td class="border px-4 py-2 text-center">1</td>
+<td class="border px-4 py-2">4年</td>
+<td class="border px-4 py-2">人工智能</td>
+<td class="border px-4 py-2">计算机相关</td>
+<td class="border px-4 py-2">需要较强的数学基础和编程能力</td>
+<td class="border px-4 py-2 text-center">2年</td>
+<td class="border px-4 py-2 text-center">85</td>
+<td class="border px-4 py-2 text-center">82</td>
+<td class="border px-4 py-2 text-center">80</td>
+<td class="border px-4 py-2 text-center">78</td>
+<td class="border px-4 py-2 text-center">650</td>
+<td class="border px-4 py-2">
+<div class="flex items-center justify-center space-x-2">
+<button class="text-blue-600 hover:text-blue-800 !rounded-button relative group">
+<i class="fas fa-edit"></i>
+<span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity">编辑</span>
+</button>
+<button class="text-gray-600 hover:text-gray-800 !rounded-button relative group">
+<i class="fas fa-copy"></i>
+<span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity">复制</span>
+</button>
+<button class="text-red-600 hover:text-red-800 !rounded-button relative group">
+<i class="fas fa-trash"></i>
+<span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity">删除</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50">
+<td class="border px-4 py-2 text-center">2</td>
+<td class="border px-4 py-2">3年</td>
+<td class="border px-4 py-2">数据科学</td>
+<td class="border px-4 py-2">统计学/数学相关</td>
+<td class="border px-4 py-2">要求具备扎实的统计学知识</td>
+<td class="border px-4 py-2 text-center">1年</td>
+<td class="border px-4 py-2 text-center">83</td>
+<td class="border px-4 py-2 text-center">80</td>
+<td class="border px-4 py-2 text-center">78</td>
+<td class="border px-4 py-2 text-center">75</td>
+<td class="border px-4 py-2 text-center">635</td>
+<td class="border px-4 py-2">
+<div class="flex items-center justify-center space-x-2">
+<button class="text-blue-600 hover:text-blue-800 !rounded-button relative group">
+<i class="fas fa-edit"></i>
+<span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity">编辑</span>
+</button>
+<button class="text-gray-600 hover:text-gray-800 !rounded-button relative group">
+<i class="fas fa-copy"></i>
+<span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity">复制</span>
+</button>
+<button class="text-red-600 hover:text-red-800 !rounded-button relative group">
+<i class="fas fa-trash"></i>
+<span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity">删除</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body>
+</html>

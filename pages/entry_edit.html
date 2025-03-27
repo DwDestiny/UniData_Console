@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>留学平台管理系统</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <script>tailwind.config = { theme: { extend: { colors: { primary: '#3176FF' }, borderRadius: { 'none': '0px', 'sm': '4px', DEFAULT: '8px', 'md': '12px', 'lg': '16px', 'xl': '20px', '2xl': '24px', '3xl': '32px', 'full': '9999px', 'button': '8px' } } } }</script>
+  <style>
+    body {
+      min-height: 1024px;
+      min-width: 1440px;
+    }
+
+    .fa-bars,
+    .fa-bell,
+    .fa-user-circle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 24px;
+      height: 24px;
+    }
+
+    .group:hover span {
+      display: block;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const headers = document.querySelectorAll('.flex.items-center.justify-between');
+      headers.forEach(header => {
+        const content = header.parentElement.children[1];
+        const icon = header.querySelector('.fas');
+        header.addEventListener('click', () => {
+          if (content.style.display === 'none') {
+            content.style.display = 'block';
+            icon.classList.remove('fa-chevron-down');
+            icon.classList.add('fa-chevron-up');
+          } else {
+            content.style.display = 'none';
+            icon.classList.remove('fa-chevron-up');
+            icon.classList.add('fa-chevron-down');
+          }
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div class="flex h-screen bg-gray-100 w-full mx-auto max-w-[1920px] min-w-[1440px]">
+    <div class="w-[280px] min-w-[280px] bg-white shadow-lg">
+      <div class="p-4 border-b">
+        <h1 class="text-xl font-semibold">留学平台管理系统</h1>
+      </div>
+      <nav class="mt-4">
+        <div class="flex flex-col space-y-1">
+          <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50">
+            <i class="fas fa-home mr-3"></i>
+            首页
+          </a>
+          <div>
+            <a href="#" class="flex items-center px-4 py-3 bg-blue-50 text-blue-600">
+              <i class="fas fa-university mr-3"></i>
+              新版院校系统
+            </a>
+            <a href="#" class="flex items-center px-4 py-2 pl-11 text-primary bg-blue-50 hover:bg-gray-50 text-sm">
+              新版院校管理
+            </a>
+            <a href="#" class="flex items-center px-4 py-2 pl-11 text-gray-600 hover:bg-gray-50 text-sm">
+              新版院系管理
+            </a>
+            <a href="#" class="flex items-center px-4 py-2 pl-11 text-gray-600 hover:bg-gray-50 text-sm">
+              新版校区管理
+            </a>
+            <a href="#" class="flex items-center px-4 py-2 pl-11 text-gray-600 hover:bg-gray-50 text-sm">
+              中国院校管理
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="flex-1 flex flex-col min-w-0">
+      <header class="h-16 bg-white shadow-sm flex items-center justify-between px-6">
+        <div class="flex items-center">
+          <i class="fas fa-bars text-gray-400 text-xl mr-4"></i>
+          <span class="text-gray-600">院校库数据管理</span>
+        </div>
+        <div class="flex items-center">
+          <i class="fas fa-bell text-gray-400 text-xl mr-4"></i>
+          <div class="flex items-center">
+            <i class="fas fa-user-circle text-gray-400 text-xl mr-2"></i>
+            <span class="text-gray-600">管理员</span>
+          </div>
+        </div>
+      </header>
+      <main class="flex-1 p-8 overflow-auto">
+        <div class="bg-white rounded-lg shadow p-8">
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-lg font-medium">专业基本信息</h2>
+            <i class="fas fa-chevron-up text-gray-400 cursor-pointer hover:text-gray-600"></i>
+          </div>
+          <div class="grid grid-cols-2 gap-8">
+            <div class="flex items-center">
+              <label class="w-40 text-right text-gray-600">专业英文名：</label>
+              <div class="w-full max-w-[300px] ml-4 px-3 py-2 bg-gray-50 text-gray-700">
+                Bachelor of Science and Bachelor
+              </div>
+            </div>
+            <div class="flex items-center">
+              <label class="w-40 text-right text-gray-600">学位名称：</label>
+              <div class="w-full max-w-[300px] ml-4 px-3 py-2 bg-gray-50 text-gray-700">
+                Bachelor
+              </div>
+            </div>
+            <div class="flex items-center">
+              <label class="w-40 text-right text-gray-600">学位等级：</label>
+              <div class="w-full max-w-[300px] ml-4 px-3 py-2 bg-gray-50 text-gray-700">
+                本科
+              </div>
+            </div>
+            <div class="flex items-center">
+              <label class="w-40 text-right text-gray-600">所属院系：</label>
+              <div class="w-full max-w-[300px] ml-4 px-3 py-2 bg-gray-50 text-gray-700">
+                计算机科学与技术学院
+              </div>
+            </div>
+            <div class="flex items-center">
+              <label class="w-40 text-right text-gray-600">学制：</label>
+              <div class="w-full max-w-[300px] ml-4 px-3 py-2 bg-gray-50 text-gray-700">
+                4年
+              </div>
+            </div>
+            <div class="flex items-center">
+              <label class="w-40 text-right text-gray-600">专业小方向：</label>
+              <div class="w-full max-w-[300px] ml-4 px-3 py-2 bg-gray-50 text-gray-700">
+                人工智能与数据科学
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow p-8 mt-8">
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-lg font-medium">背景要求</h2>
+            <i class="fas fa-chevron-up text-gray-400 cursor-pointer hover:text-gray-600"></i>
+          </div>
+          <div class="grid grid-cols-2 gap-8">
+            <div class="flex items-start">
+              <label class="w-40 text-right text-gray-600 mt-2">学制：</label>
+              <div class="w-[300px] ml-4">
+                <select class="w-full p-2 border !rounded-sm">
+                  <option>3年</option>
+                  <option>4年</option>
+                  <option>5年</option>
+                </select>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <label class="w-40 text-right text-gray-600 mt-2">专业小方向：</label>
+              <div class="w-[300px] ml-4">
+                <select class="w-full p-2 border !rounded-sm">
+                  <option>人工智能</option>
+                  <option>数据科学</option>
+                  <option>软件工程</option>
+                </select>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <label class="w-40 text-right text-gray-600 mt-2">专业背景要求：</label>
+              <div class="w-[300px] ml-4">
+                <select class="w-full p-2 border !rounded-sm">
+                  <option>要求相关专业</option>
+                  <option>不限专业</option>
+                </select>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <label class="w-40 text-right text-gray-600 mt-2">专业背景要求及说明：</label>
+              <textarea class="w-full max-w-[300px] ml-4 p-2 border !rounded-sm h-24"
+                placeholder="请输入专业背景要求说明，300字以内"></textarea>
+            </div>
+            <div class="flex items-start">
+              <label class="w-40 text-right text-gray-600 mt-2">工作经验要求：</label>
+              <div class="w-[300px] ml-4">
+                <select class="w-full p-2 border !rounded-sm">
+                  <option>需要</option>
+                  <option>不需要</option>
+                </select>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <label class="w-40 text-right text-gray-600 mt-2">工作经验时长：</label>
+              <div class="w-[300px] ml-4 flex items-center space-x-4">
+                <input type="number" class="w-24 p-2 border !rounded-sm" min="0">
+                <select class="p-2 border !rounded-sm">
+                  <option>年</option>
+                  <option>月</option>
+                  <option>天</option>
+                  <option>小时</option>
+                </select>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <label class="w-40 text-right text-gray-600 mt-2">工作经验要求说明：</label>
+              <textarea class="w-[300px] ml-4 p-2 border !rounded-sm h-24" placeholder="请输入工作经验要求说明，300字以内"></textarea>
+            </div>
+            <div class="col-span-2"></div>
+            <div class="flex items-start">
+              <label class="w-40 text-right text-gray-600 mt-2">是否要求作品集：</label>
+              <div class="w-[300px] ml-4">
+                <select class="w-full p-2 border !rounded-sm">
+                  <option>是</option>
+                  <option>否</option>
+                </select>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <label class="w-40 text-right text-gray-600 mt-2">作品集要求说明：</label>
+              <textarea class="w-[300px] ml-4 p-2 border !rounded-sm h-24" placeholder="请输入作品集要求说明，300字以内"></textarea>
+            </div>
+            <div class="flex items-start">
+              <label class="w-40 text-right text-gray-600 mt-2">是否需要面试：</label>
+              <div class="w-[300px] ml-4">
+                <select class="w-full p-2 border !rounded-sm">
+                  <option>是</option>
+                  <option>否</option>
+                </select>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <label class="w-40 text-right text-gray-600 mt-2">面试要求说明：</label>
+              <textarea class="w-[300px] ml-4 p-2 border !rounded-sm h-24" placeholder="请输入面试要求说明，300字以内"></textarea>
+            </div>
+            <div class="flex items-start col-span-2">
+              <label class="w-40 text-right text-gray-600 mt-2">专业分类：</label>
+              <div class="w-full max-w-[740px] ml-4 space-x-4">
+                <select class="p-2 border !rounded-sm">
+                  <option>一级分类</option>
+                  <option>工程类</option>
+                  <option>理学类</option>
+                  <option>文学类</option>
+                </select>
+                <select class="p-2 border !rounded-sm">
+                  <option>二级分类</option>
+                  <option>计算机科学</option>
+                  <option>软件工程</option>
+                  <option>信息技术</option>
+                </select>
+                <select class="p-2 border !rounded-sm">
+                  <option>三级分类</option>
+                  <option>人工智能</option>
+                  <option>大数据</option>
+                  <option>云计算</option>
+                </select>
+                <button class="px-4 py-2 bg-primary text-white rounded-button whitespace-nowrap">新增</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow p-8 mt-8">
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-lg font-medium">语言成绩要求</h2>
+            <i class="fas fa-chevron-up text-gray-400 cursor-pointer hover:text-gray-600"></i>
+          </div>
+          <div class="grid grid-cols-5 gap-8">
+            <div class="flex items-start">
+              <label class="w-20 text-right text-gray-600 mt-2">雅思总分：</label>
+              <input type="number" step="0.1" class="w-20 ml-2 p-2 border !rounded-sm" />
+            </div>
+            <div class="flex items-start">
+              <label class="w-16 text-right text-gray-600 mt-2">听力：</label>
+              <input type="number" step="0.1" class="w-20 ml-2 p-2 border !rounded-sm" />
+            </div>
+            <div class="flex items-start">
+              <label class="w-16 text-right text-gray-600 mt-2">口语：</label>
+              <input type="number" step="0.1" class="w-20 ml-2 p-2 border !rounded-sm" />
+            </div>
+            <div class="flex items-start">
+              <label class="w-16 text-right text-gray-600 mt-2">阅读：</label>
+              <input type="number" step="0.1" class="w-20 ml-2 p-2 border !rounded-sm" />
+            </div>
+            <div class="flex items-start">
+              <label class="w-16 text-right text-gray-600 mt-2">写作：</label>
+              <input type="number" step="0.1" class="w-20 ml-2 p-2 border !rounded-sm" />
+            </div>
+            <div class="flex items-start">
+              <label class="w-20 text-right text-gray-600 mt-2">托福总分：</label>
+              <input type="number" step="0.1" class="w-20 ml-2 p-2 border !rounded-sm" />
+            </div>
+            <div class="flex items-start">
+              <label class="w-16 text-right text-gray-600 mt-2">听力：</label>
+              <input type="number" step="0.1" class="w-20 ml-2 p-2 border !rounded-sm" />
+            </div>
+            <div class="flex items-start">
+              <label class="w-16 text-right text-gray-600 mt-2">口语：</label>
+              <input type="number" step="0.1" class="w-20 ml-2 p-2 border !rounded-sm" />
+            </div>
+            <div class="flex items-start">
+              <label class="w-16 text-right text-gray-600 mt-2">阅读：</label>
+              <input type="number" step="0.1" class="w-20 ml-2 p-2 border !rounded-sm" />
+            </div>
+            <div class="flex items-start">
+              <label class="w-16 text-right text-gray-600 mt-2">写作：</label>
+              <input type="number" step="0.1" class="w-20 ml-2 p-2 border !rounded-sm" />
+            </div>
+            <div class="flex items-start">
+              <label class="w-20 text-right text-gray-600 mt-2">PTE总分：</label>
+              <input type="number" step="0.1" class="w-20 ml-2 p-2 border !rounded-sm" />
+            </div>
+            <div class="flex items-start">
+              <label class="w-16 text-right text-gray-600 mt-2">听力：</label>
+              <input type="number" step="0.1" class="w-20 ml-2 p-2 border !rounded-sm" />
+            </div>
+            <div class="flex items-start">
+              <label class="w-16 text-right text-gray-600 mt-2">口语：</label>
+              <input type="number" step="0.1" class="w-20 ml-2 p-2 border !rounded-sm" />
+            </div>
+            <div class="flex items-start">
+              <label class="w-16 text-right text-gray-600 mt-2">阅读：</label>
+              <input type="number" step="0.1" class="w-20 ml-2 p-2 border !rounded-sm" />
+            </div>
+            <div class="flex items-start">
+              <label class="w-16 text-right text-gray-600 mt-2">写作：</label>
+              <input type="number" step="0.1" class="w-20 ml-2 p-2 border !rounded-sm" />
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow p-8 mt-8">
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-lg font-medium">硕士学术成绩要求</h2>
+            <i class="fas fa-chevron-up text-gray-400 cursor-pointer hover:text-gray-600"></i>
+          </div>
+          <div class="space-y-8">
+            <div>
+              <h3 class="text-gray-700 font-medium mb-4">学术成绩</h3>
+              <div class="grid grid-cols-4 gap-8">
+                <div class="flex items-start">
+                  <label class="w-28 text-right text-gray-600 mt-2">C9均分：</label>
+                  <div class="flex items-center ml-2">
+                    <input type="number" step="0.1" class="w-20 p-2 border !rounded-sm" />
+                    <span class="ml-2">%</span>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <label class="w-28 text-right text-gray-600 mt-2">985均分：</label>
+                  <div class="flex items-center ml-2">
+                    <input type="number" step="0.1" class="w-20 p-2 border !rounded-sm" />
+                    <span class="ml-2">%</span>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <label class="w-28 text-right text-gray-600 mt-2">211均分：</label>
+                  <div class="flex items-center ml-2">
+                    <input type="number" step="0.1" class="w-20 p-2 border !rounded-sm" />
+                    <span class="ml-2">%</span>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <label class="w-28 text-right text-gray-600 mt-2">非211均分：</label>
+                  <div class="flex items-center ml-2">
+                    <input type="number" step="0.1" class="w-20 p-2 border !rounded-sm" />
+                    <span class="ml-2">%</span>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <label class="w-28 text-right text-gray-600 mt-2">英国本科均分：</label>
+                  <div class="flex items-center ml-2">
+                    <input type="number" step="0.1" class="w-20 p-2 border !rounded-sm" />
+                    <span class="ml-2">%</span>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <label class="w-28 text-right text-gray-600 mt-2">澳大利亚本科均分：</label>
+                  <div class="flex items-center ml-2">
+                    <input type="number" step="0.1" class="w-20 p-2 border !rounded-sm" />
+                    <span class="ml-2">%</span>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <label class="w-28 text-right text-gray-600 mt-2">美国本科均分：</label>
+                  <div class="flex items-center ml-2">
+                    <input type="number" step="0.1" class="w-20 p-2 border !rounded-sm" />
+                    <span class="ml-2">/4.0</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-gray-700 font-medium mb-4">标准化考试成绩</h3>
+              <div class="grid grid-cols-2 gap-8">
+                <div class="flex items-start">
+                  <label class="w-28 text-right text-gray-600 mt-2">GRE总分：</label>
+                  <input type="number" step="0.1" class="w-20 ml-2 p-2 border !rounded-sm" />
+                </div>
+                <div class="flex items-start">
+                  <label class="w-28 text-right text-gray-600 mt-2">GRE成绩说明：</label>
+                  <textarea class="w-[300px] ml-2 p-2 border !rounded-sm h-24"
+                    placeholder="请输入GRE成绩要求说明，300字以内"></textarea>
+                </div>
+                <div class="flex items-start">
+                  <label class="w-28 text-right text-gray-600 mt-2">GMAT总分：</label>
+                  <input type="number" step="0.1" class="w-20 ml-2 p-2 border !rounded-sm" />
+                </div>
+                <div class="flex items-start">
+                  <label class="w-28 text-right text-gray-600 mt-2">GMAT成绩说明：</label>
+                  <textarea class="w-[300px] ml-2 p-2 border !rounded-sm h-24"
+                    placeholder="请输入GMAT成绩要求说明，300字以内"></textarea>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-gray-700 font-medium mb-4">中国大学list</h3>
+                <div class="space-y-4">
+                  <div class="flex items-center space-x-8 py-2 border-b">
+                    <div class="w-16 text-gray-600">序号</div>
+                    <div class="w-48">名单名称</div>
+                    <div class="w-48">适用分数</div>
+                    <div class="flex-1">操作</div>
+                  </div>
+                  <div class="flex items-center space-x-8 py-2">
+                    <div class="w-16 text-gray-600">1</div>
+                    <div class="w-48">
+                      <select class="w-full p-2 border !rounded-sm">
+                        <option>C9高校</option>
+                        <option>985高校</option>
+                        <option>211高校</option>
+                        <option>普通本科</option>
+                      </select>
+                    </div>
+                    <div class="flex items-center w-48 space-x-2">
+                      <select class="w-full p-2 border !rounded-sm" onchange="toggleFixedScore(this)">
+                        <option>第一档</option>
+                        <option>第二档</option>
+                        <option>固定值</option>
+                      </select>
+                      <div class="hidden fixed-score-input items-center">
+                        <input type="number" class="w-20 p-2 border !rounded-sm" placeholder="请输入分数">
+                        <span class="ml-1">%</span>
+                      </div>
+                    </div>
+                    <script>
+                      function toggleFixedScore(select) {
+                        const input = select.parentElement.querySelector('.fixed-score-input');
+                        if (select.value === '固定值') {
+                          input.style.display = 'flex';
+                        } else {
+                          input.style.display = 'none';
+                        }
+                      }
+                    </script>
+                    <div class="flex items-center space-x-2">
+                      <button
+                        class="px-3 py-1 border border-gray-300 rounded-button text-gray-600 hover:bg-gray-50 whitespace-nowrap">
+                        <i class="fas fa-copy mr-1"></i>复制
+                      </button>
+                      <button
+                        class="px-3 py-1 border border-gray-300 rounded-button text-gray-600 hover:bg-gray-50 whitespace-nowrap">
+                        <i class="fas fa-trash mr-1"></i>删除
+                      </button>
+                    </div>
+                  </div>
+                  <div class="flex items-center space-x-8 py-2">
+                    <div class="w-16 text-gray-600">2</div>
+                    <div class="w-48">
+                      <select class="w-full p-2 border !rounded-sm">
+                        <option>985高校</option>
+                        <option>C9高校</option>
+                        <option>211高校</option>
+                        <option>普通本科</option>
+                      </select>
+                    </div>
+                    <div class="flex items-center w-48 space-x-2">
+                      <select class="w-full p-2 border !rounded-sm" onchange="toggleFixedScore(this)">
+                        <option>第一档</option>
+                        <option>第二档</option>
+                        <option>固定值</option>
+                      </select>
+                      <div class="hidden fixed-score-input items-center">
+                        <input type="number" class="w-20 p-2 border !rounded-sm" placeholder="请输入分数">
+                        <span class="ml-1">%</span>
+                      </div>
+                    </div>
+                    <script>
+                      function toggleFixedScore(select) {
+                        const input = select.parentElement.querySelector('.fixed-score-input');
+                        if (select.value === '固定值') {
+                          input.style.display = 'flex';
+                        } else {
+                          input.style.display = 'none';
+                        }
+                      }
+                    </script>
+                    <div class="flex items-center space-x-2">
+                      <button
+                        class="px-3 py-1 border border-gray-300 rounded-button text-gray-600 hover:bg-gray-50 whitespace-nowrap">
+                        <i class="fas fa-copy mr-1"></i>复制
+                      </button>
+                      <button
+                        class="px-3 py-1 border border-gray-300 rounded-button text-gray-600 hover:bg-gray-50 whitespace-nowrap">
+                        <i class="fas fa-trash mr-1"></i>删除
+                      </button>
+                    </div>
+                  </div>
+                  <div class="pt-4">
+                    <button class="px-4 py-2 bg-primary text-white rounded-button whitespace-nowrap">
+                      <i class="fas fa-plus mr-1"></i>新增
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow p-8 mt-8">
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-lg font-medium">本科学术成绩要求</h2>
+            <i class="fas fa-chevron-up text-gray-400 cursor-pointer hover:text-gray-600"></i>
+          </div>
+          <div class="space-y-8">
+            <div>
+              <h3 class="text-gray-700 font-medium mb-4">Alevel分数要求</h3>
+              <div class="grid grid-cols-2 gap-8">
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">Alevel三科总分：</label>
+                  <input type="number" class="w-[300px] ml-4 p-2 border !rounded-sm">
+                </div>
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">Alevel四科总分：</label>
+                  <input type="number" class="w-[300px] ml-4 p-2 border !rounded-sm">
+                </div>
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">Alevel三科/四科最低分：</label>
+                  <input type="number" class="w-[300px] ml-4 p-2 border !rounded-sm">
+                </div>
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">科目一分数：</label>
+                  <select class="w-[300px] ml-4 p-2 border !rounded-sm">
+                    <option>A*</option>
+                    <option>A</option>
+                    <option>B</option>
+                    <option>C</option>
+                    <option>D</option>
+                    <option>E</option>
+                  </select>
+                </div>
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">科目二分数：</label>
+                  <select class="w-[300px] ml-4 p-2 border !rounded-sm">
+                    <option>A*</option>
+                    <option>A</option>
+                    <option>B</option>
+                    <option>C</option>
+                    <option>D</option>
+                    <option>E</option>
+                  </select>
+                </div>
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">科目三分数：</label>
+                  <select class="w-[300px] ml-4 p-2 border !rounded-sm">
+                    <option>A*</option>
+                    <option>A</option>
+                    <option>B</option>
+                    <option>C</option>
+                    <option>D</option>
+                    <option>E</option>
+                  </select>
+                </div>
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">Alevel要求说明：</label>
+                  <textarea class="w-[300px] ml-4 p-2 border !rounded-sm h-24"
+                    placeholder="请输入Alevel要求说明，1000字以内"></textarea>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-gray-700 font-medium mb-4">其他分数要求</h3>
+              <div class="grid grid-cols-2 gap-8">
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">ATAR分数：</label>
+                  <input type="number" class="w-[300px] ml-4 p-2 border !rounded-sm">
+                </div>
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">ATAR要求说明：</label>
+                  <textarea class="w-[300px] ml-4 p-2 border !rounded-sm h-24"
+                    placeholder="请输入ATAR要求说明"></textarea>
+                </div>
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">IB分数：</label>
+                  <input type="number" class="w-[300px] ml-4 p-2 border !rounded-sm">
+                </div>
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">IB要求说明：</label>
+                  <textarea class="w-[300px] ml-4 p-2 border !rounded-sm h-24" placeholder="请输入IB要求说明"></textarea>
+                </div>
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">SAT分数：</label>
+                  <input type="number" class="w-[300px] ml-4 p-2 border !rounded-sm">
+                </div>
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">SAT要求说明：</label>
+                  <textarea class="w-[300px] ml-4 p-2 border !rounded-sm h-24"
+                    placeholder="请输入SAT要求说明"></textarea>
+                </div>
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">ACT分数：</label>
+                  <input type="number" class="w-[300px] ml-4 p-2 border !rounded-sm">
+                </div>
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">ACT要求说明：</label>
+                  <textarea class="w-[300px] ml-4 p-2 border !rounded-sm h-24"
+                    placeholder="请输入ACT要求说明"></textarea>
+                </div>
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">AP分数：</label>
+                  <input type="number" class="w-[300px] ml-4 p-2 border !rounded-sm">
+                </div>
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">AP要求说明：</label>
+                  <textarea class="w-[300px] ml-4 p-2 border !rounded-sm h-24" placeholder="请输入AP要求说明"></textarea>
+                </div>
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">BC分数：</label>
+                  <input type="number" class="w-[300px] ml-4 p-2 border !rounded-sm">
+                </div>
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">BC要求说明：</label>
+                  <textarea class="w-[300px] ml-4 p-2 border !rounded-sm h-24" placeholder="请输入BC要求说明"></textarea>
+                </div>
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">OSSD分数：</label>
+                  <input type="number" class="w-[300px] ml-4 p-2 border !rounded-sm">
+                </div>
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">OSSD要求说明：</label>
+                  <textarea class="w-[300px] ml-4 p-2 border !rounded-sm h-24"
+                    placeholder="请输入OSSD要求说明"></textarea>
+                </div>
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">高三分数：</label>
+                  <input type="number" class="w-[300px] ml-4 p-2 border !rounded-sm">
+                </div>
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">高三要求说明：</label>
+                  <textarea class="w-[300px] ml-4 p-2 border !rounded-sm h-24" placeholder="请输入高三要求说明"></textarea>
+                </div>
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">高考分数：</label>
+                  <div class="w-[300px] ml-4 flex items-center">
+                    <input type="number" class="flex-1 p-2 border !rounded-sm">
+                    <span class="ml-2">%</span>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">高考要求说明：</label>
+                  <textarea class="w-[300px] ml-4 p-2 border !rounded-sm h-24" placeholder="请输入高考要求说明"></textarea>
+                </div>
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">高考分数线：</label>
+                  <select class="w-[300px] ml-4 p-2 border !rounded-sm">
+                    <option>一本线</option>
+                    <option>二本线</option>
+                    <option>三本线</option>
+                  </select>
+                </div>
+                <div class="flex items-start">
+                  <label class="w-40 text-right text-gray-600 mt-2">专科分数：</label>
+                  <div class="w-[300px] ml-4 flex items-center">
+                    <input type="number" class="flex-1 p-2 border !rounded-sm">
+                    <span class="ml-2">%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <div class="flex justify-center space-x-4 p-8 bg-gray-50 border-t">
+        <button
+          class="px-8 py-3 text-lg border border-gray-300 text-gray-600 rounded-button hover:bg-gray-50 whitespace-nowrap">重置</button>
+        <button class="px-8 py-3 text-lg bg-primary text-white rounded-button whitespace-nowrap">提交</button>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
