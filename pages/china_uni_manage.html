@@ -56,6 +56,7 @@ cursor: pointer;
 document.addEventListener('DOMContentLoaded', function() {
 const masterCheckbox = document.querySelector('.master-checkbox');
 const rowCheckboxes = document.querySelectorAll('.row-checkbox');
+const deleteStatusFilter = document.getElementById('deleteStatusFilter');
 masterCheckbox.addEventListener('change', function() {
 rowCheckboxes.forEach(checkbox => {
 checkbox.checked = masterCheckbox.checked;
@@ -65,6 +66,33 @@ updateBatchDeleteButton();
 rowCheckboxes.forEach(checkbox => {
 checkbox.addEventListener('change', updateBatchDeleteButton);
 });
+deleteStatusFilter.addEventListener('change', function() {
+const isDeleted = this.value === '已删除';
+document.querySelectorAll('tbody tr').forEach(row => {
+const editBtn = row.querySelector('.edit-icon').closest('button');
+const deleteBtn = row.querySelector('.fa-trash').closest('button');
+const restoreBtn = row.querySelector('.restore-btn') || createRestoreBtn(row);
+if (isDeleted) {
+editBtn.classList.add('hidden');
+deleteBtn.classList.add('hidden');
+restoreBtn.classList.remove('hidden');
+} else {
+editBtn.classList.remove('hidden');
+deleteBtn.classList.remove('hidden');
+restoreBtn.classList.add('hidden');
+}
+});
+});
+function createRestoreBtn(row) {
+const btn = document.createElement('button');
+btn.className = 'text-green-600 hover:text-green-800 !rounded-button relative group restore-btn hidden';
+btn.innerHTML = `
+<i class="fas fa-undo"></i>
+<span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity">恢复</span>
+`;
+row.querySelector('td:last-child div').appendChild(btn);
+return btn;
+}
 function updateBatchDeleteButton() {
 const batchDeleteBtn = document.getElementById('batchDeleteBtn');
 const checkedBoxes = document.querySelectorAll('.row-checkbox:checked');
@@ -245,20 +273,29 @@ saveTooltip.classList.remove('hidden');
 <i class="fas fa-search text-gray-400 mr-2"></i>
 <input type="text" placeholder="请输入关键词搜索" class="bg-transparent border-none outline-none flex-1 text-sm">
 </div>
-<div class="flex items-center space-x-4 flex-shrink-0">
-<select class="px-4 py-2 border border-gray-300 rounded-md text-sm bg-white">
-<option>所有类型</option>
-<option>C9</option>
-<option>985</option>
-<option>211</option>
-<option>非211</option>
+<div class="flex items-center bg-gray-50 rounded-md">
+<div class="flex items-center px-3 py-2 w-48">
+<i class="fas fa-id-card text-gray-400 mr-2"></i>
+<input type="text" placeholder="院校ID" class="bg-transparent border-none outline-none w-full text-sm">
+</div>
+</div>
+<div class="flex items-center bg-gray-50 rounded-md">
+<div class="flex items-center px-3 py-2 w-48">
+<i class="fas fa-trash text-gray-400 mr-2"></i>
+<select class="bg-transparent border-none outline-none w-full text-sm" id="deleteStatusFilter">
+<option selected>未删除</option>
+<option>已删除</option>
 </select>
-<div class="flex items-center space-x-2">
-<input type="number" placeholder="最低排名" class="px-3 py-2 border border-gray-300 rounded-md text-sm bg-white w-24">
-<span class="text-gray-500">-</span>
-<input type="number" placeholder="最高排名" class="px-3 py-2 border border-gray-300 rounded-md text-sm bg-white w-24">
 </div>
 </div>
+<button class="px-4 py-2 bg-primary text-white text-sm !rounded-button whitespace-nowrap">
+<i class="fas fa-search mr-2"></i>
+查询
+</button>
+<button class="px-4 py-2 border border-gray-300 text-gray-700 text-sm !rounded-button whitespace-nowrap">
+<i class="fas fa-eraser mr-2"></i>
+清空
+</button>
 </div>
 <div class="overflow-x-auto">
 <table class="w-full min-w-[1200px]">
